@@ -1,29 +1,11 @@
-all: TpMonop
+all: main
 
-TpMonop: joueur.o case.o achetable.o gare.o constructible.o service.o plateau.o
-	g++ -o TpMonop joueur.o case.o achetable.o gare.o constructible.o service.o plateau.o
+main: main.o
+	g++ -o main main.o
 	rm *.o
 
-joueur.o: joueur.cpp
-	g++ -c joueur.cpp
-
-case.o: case.cpp
-	g++ -c case.cpp
-
-achetable.o: achetable.cpp
-	g++ -c achetable.cpp 
-
-gare.o: gare.cpp
-	g++ -c gare.cpp
-
-constructible.o: constructible.cpp
-	g++ -c constructible.cpp
-
-service.o: service.cpp
-	g++ -c service.cpp
-
-plateau.o: plateau.cpp
-	g++ -c plateau.cpp
-
+main.o: main.cpp
+	g++ -c main.cpp
+	
 clean:
 	rm *.o

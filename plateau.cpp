@@ -35,11 +35,14 @@ int Plateau::nbGares(Joueur J){
 	
 	//Pour chaque position de gare (manuellement) :
 	GarePtr = (Gare*) cases[0];
-	if ( GarePtr->getProprio()->getNom == J.getNom()) varGares ++;
+	if ( GarePtr->getProprio()->getNom() == J.getNom()) varGares ++;
 	GarePtr = (Gare*) cases[5];
-	if ( GarePtr->getProprio()->getNom == J.getNom()) varGares ++;
+	if ( GarePtr->getProprio()->getNom() == J.getNom()) varGares ++;
 	GarePtr = (Gare*) cases[15];
-	if ( GarePtr->getProprio()->getNom == J.getNom()) varGares ++;
+	if ( GarePtr->getProprio()->getNom() == J.getNom()) varGares ++;
 	GarePtr = (Gare*) cases[25];
-	if ( GarePtr->getProprio()->getNom == J.getNom()) varGares ++;
+	if ( GarePtr->getProprio()->getNom() == J.getNom()) varGares ++;
+	GarePtr = (Gare*) cases[35];
+	if ( GarePtr->getProprio()->getNom() == J.getNom()) varGares ++;
+	return varGares;
 }

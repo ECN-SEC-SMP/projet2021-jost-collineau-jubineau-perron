@@ -8,8 +8,6 @@ Joueur::Joueur(string name)
   this-> nom = name;   //on set le nom du joueur avec celui donné en paramètre
   this-> fortune = 100000;  //on initialise la fortune du joueur à 100000 en début de partie
   this-> position = 0;  //on initialise la position du joueur à 0
-  // this-> id = 
-
 }
 
 bool Joueur::payer(Joueur* j, int price)  //permet de payer un joueur
@@ -42,3 +40,21 @@ void Joueur::setFortune(int money)
   this->fortune = this->fortune + money;  //permet d'ajouter de l'argent à la fortune du joueur
 }
 
+int Joueur::getFortune() const
+{
+  return (this->fortune);
+}
+
+int Joueur::getPosition() const
+{
+  return (this->position);
+}
+
+void Joueur::afficher_info_joueur()
+{
+  cout << "   INFO JOUEUR   " << endl;
+  cout << "Nom = " << this->getNom() << endl;
+  cout << "Fortune = " << this->getFortune() << endl;
+  cout << "Position = " << this->getPosition() << endl;
+  
+}

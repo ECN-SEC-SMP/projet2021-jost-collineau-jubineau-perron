@@ -1,12 +1,12 @@
 #include "achetable.h"
 
-Achetable::Achetable() : Case(nom, id)
+Achetable::Achetable(string nom, int id, Joueur* proprietaire, int prix) : Case(nom, id)
 {
   this -> prix = prix;
   this -> proprietaire = proprietaire;
 }
 
-joueur* Achetable::getProprio()
+Joueur* Achetable::getProprio()
 {
 	return this -> proprietaire;
 }
