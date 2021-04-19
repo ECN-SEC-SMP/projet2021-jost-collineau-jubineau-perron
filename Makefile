@@ -14,7 +14,7 @@ joueur.o: joueur.cpp
 case.o: case.cpp
 	g++ -c case.cpp
 
-plateau.o: plateau.cpp gare.o service.o constructible.o case.o joueur.o
+plateau.o: plateau.cpp gare.o service.o constructible.o non_achetable.o case.o joueur.o
 	g++ -c plateau.cpp
 
 constructible.o: constructible.cpp case.o joueur.o
