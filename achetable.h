@@ -21,5 +21,6 @@ class Achetable : public Case                             //Case achetable
 		Joueur* getProprio();
     int getPrix();
     int getLoyer();
+    void setLoyer(int nouveauLoyer);
     
 };

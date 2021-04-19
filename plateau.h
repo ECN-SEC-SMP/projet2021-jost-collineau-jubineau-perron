@@ -1,9 +1,13 @@
 #pragma once
 #include <string>
+#include <iostream>
 #include <vector>
 
 //class Joueur;
 #include "case.h"
+#include "gare.h"
+#include "constructible.h"
+#include "service.h"
 #include "joueur.h"
 using namespace std;
 
@@ -23,7 +27,6 @@ class Plateau
 		vector <Case*> cases;
 		De de;
 		vector <Joueur> joueurs;
-		int nbGares(Joueur J);
 
   public :
 		Plateau();
@@ -32,4 +35,6 @@ class Plateau
 		//void avancer(); // ????
 		void tourDeJeu();
 		bool finDePartie();
+		int nbGares(Joueur *J);
+    
 };

@@ -19,6 +19,11 @@ int Achetable::getLoyer(){
   return this->loyer;
 }
 
+void Achetable::setLoyer(int nouveauLoyer)
+{
+  this -> loyer = nouveauLoyer;
+}
+
 bool Achetable::acheter(Joueur* acheteur)
 {
   if (this -> proprietaire != NULL)

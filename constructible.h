@@ -16,6 +16,8 @@ class Constructible : public Achetable
     int getBat1();
     int getBat2();
     int getBat3();
+
+
   
   protected :
   

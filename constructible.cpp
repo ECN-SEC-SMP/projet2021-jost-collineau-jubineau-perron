@@ -19,22 +19,126 @@ int Constructible::getBat3(){
   return this->nivBat3;
 }
 
-/*int Constructible::calculLoyer(void)
+int Constructible::calculLoyer(void)
 {
   int loyer = 0;
   int prixCase = this -> getPrix();
   
-  //On rajoute 10% du prix
-  loyer = (prixCase/2) + ((prixCase/10) * getBat1) + ((prixCase/10) * getBat2) + ((prixCase/10) * getBat3);  
+  //On rajoute 10% du prix pour chaque maison sur le terrain et 20% pour chaque hotel
+  loyer = (prixCase/2) + ((prixCase/10) * this -> getBat1()) + ((prixCase/10) * this -> getBat2()) + ((prixCase/10) * this -> getBat3());
+
+  this -> setLoyer(loyer);
+
+  return loyer;
 }
+
+bool Constructible::construire(int type)
+{
+  int fortune = this -> getProprio() -> getFortune();
+
+  if ((nivBat1 != 0) && (nivBat2 != 0) && (nivBat3 != 0))
+  {
+    return false;
+  }
+  
+  if (type == 1)
+  {
+    if ((fortune) >= 300)             //Prix d'une maison : 300€
+    {
+      if (nivBat1 == 0)
+      {
+        this -> getProprio() -> setFortune(fortune - 300);
+        nivBat1 = 1;
+        return true;
+      }
+      else if (nivBat2 == 0)
+      {
+        this -> getProprio() -> setFortune(fortune - 300);
+        nivBat2 = 1;
+        return true;
+      }
+      else if (nivBat3 == 0)
+      {
+        this -> getProprio() -> setFortune(fortune - 300);
+        nivBat3 = 1;
+        return true;
+      }
+    }
+    else {return false;}
+  }
+  else if (type == 2)
+  {
+    if ((fortune) >= 800)             //Prix d'un hotel : 800€
+    {
+      if (nivBat1 == 0)
+      {
+        this -> getProprio() -> setFortune(fortune - 800);
+        nivBat1 = 2;
+        return true;
+      }
+      else if (nivBat2 == 0)
+      {
+        this -> getProprio() -> setFortune(fortune - 800);
+        nivBat2 = 2;
+        return true;
+      }
+      else if (nivBat3 == 0)
+      {
+        this -> getProprio() -> setFortune(fortune - 800);
+        nivBat3 = 2;
+        return true;
+      }
+    }
+    else {return false;}
+  }
+  else {return false;}
+
+  return false;
 }
-*/
 
+bool Constructible::upgrade(int batToUpgrade)
+{
+  int fortune = this -> getProprio() -> getFortune();
 
+  if (fortune >= 500)
+  {
+    if(batToUpgrade == 1)
+    {
+      if (nivBat1 != 1){return false;}
+      else
+      {
+        this->nivBat1++;
+        this -> getProprio() -> setFortune(fortune - 500);
+        return true;
+      }
+    }
 
-// int calculLoyer(void);                          //Calcul du loyer
-// bool construire(int type);
-// bool upgrade(int batToUpgrade);
+    if(batToUpgrade == 2)
+    {
+      if (nivBat1 != 1){return false;}
+      else
+      {
+        this->nivBat2++;
+        this -> getProprio() -> setFortune(fortune - 500);
+        return true;
+      }
+    }
+
+    if(batToUpgrade == 3)
+    {
+      if (nivBat1 != 1){return false;}
+      else
+      {
+        this->nivBat3++;
+        this -> getProprio() -> setFortune(fortune - 500);
+        return true;
+      }
+    }
+  }
+  else{return false;}
+
+  return false;
+}
 
 //Surchage de l'opérateur << pour l'affichage
 ostream& operator<<(ostream& os, Constructible c)
@@ -46,6 +150,7 @@ ostream& operator<<(ostream& os, Constructible c)
       cout << "proprietaire: " << c.getProprio()->getNom() << ", ";
 
       int nbMaison = 0, nbHotel = 0;
+
       if(c.getBat1() == 1)nbMaison++;
       if(c.getBat1() == 2)nbHotel++;
       
@@ -56,7 +161,7 @@ ostream& operator<<(ostream& os, Constructible c)
       if(c.getBat3() == 2)nbHotel++;
 
       if(nbMaison != 0){ cout << to_string(nbMaison) << " maisons " ;}
-      if(nbHotel){ cout << to_string(nbHotel) << " hotels";}
+      if(nbHotel != 0){ cout << ", " << to_string(nbHotel) << " hotels";}
 
       cout << ", loyer = " << to_string(c.getLoyer()) << "\n"; 
     }
