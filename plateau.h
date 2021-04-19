@@ -2,10 +2,10 @@
 #include <string>
 #include <vector>
 
-#include "constructible.h"
-#include "gare.h"
-#include "joueur.h"
+//class Joueur;
+//#include "case.h"
 using namespace std;
+
 
 class De {
 	private :

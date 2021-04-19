@@ -1,8 +1,16 @@
 #pragma once
-#include "plateau.h"
-#include "string"
-
+#include <string>
 #include <iostream>
+
+class Plateau;
+
+//#include "plateau.h"
+//#include "case.h"
+//#include "achetable.h"
+//#include "constructible.h"
+//#include "gare.h"
+//#include "service.h"
+
 using namespace std;
 
 class Joueur

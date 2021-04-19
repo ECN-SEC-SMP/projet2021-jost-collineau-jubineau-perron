@@ -56,5 +56,5 @@ void Joueur::afficher_info_joueur()
   cout << "Nom = " << this->getNom() << endl;
   cout << "Fortune = " << this->getFortune() << endl;
   cout << "Position = " << this->getPosition() << endl;
-  
+  cout << "           "<< endl;
 }

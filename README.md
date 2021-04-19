@@ -1,4 +1,6 @@
 Initilisation
 
-Gatien Jost
-Perron Youn
+JOST Gatien
+PERRON Youn
+JUBINEAU Bastien
+COLLINEAU Hugo

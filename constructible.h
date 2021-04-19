@@ -9,6 +9,10 @@ class Constructible : public Achetable                    //Case constructible
     int calculLoyer(string nom);                          //Calcul du loyer
     bool construire(int type);
     bool upgrade(int batToUpgrade);
+
+    int getBat1();
+    int getBat2();
+    int getBat3();
   
   protected :
   

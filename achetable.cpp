@@ -10,3 +10,11 @@ Joueur* Achetable::getProprio()
 {
 	return this -> proprietaire;
 }
+
+int Achetable::getPrix(){
+  return this->prix;
+}
+
+int Achetable::getLoyer(){
+  return this->loyer;
+}
