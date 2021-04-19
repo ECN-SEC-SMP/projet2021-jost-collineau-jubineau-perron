@@ -24,7 +24,7 @@ class Joueur
   public :
     Joueur();
     Joueur(string name);
-    Plateau *refplateau;
+    //Plateau *refplateau;
 
     bool payer(Joueur* j, int price);
     void deplacer(int deplacement);

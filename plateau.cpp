@@ -22,7 +22,7 @@ void Plateau::afficher(){
 }
 
 void Plateau::tourDeJeu(){
-	return;
+	return;                           //Bien penser à n'appeler la fonction acheter que si le chiffre donné par le dé est impaire
 }
 
 bool Plateau::finDePartie(){
@@ -30,7 +30,7 @@ bool Plateau::finDePartie(){
 }
 
 int Plateau::nbGares(Joueur J){
-	int varGares = 0;
+	/*int varGares = 0;
 	Gare *GarePtr = new Gare;
 	
 	//Pour chaque position de gare (manuellement) :
@@ -44,5 +44,5 @@ int Plateau::nbGares(Joueur J){
 	if ( GarePtr->getProprio()->getNom() == J.getNom()) varGares ++;
 	GarePtr = (Gare*) cases[35];
 	if ( GarePtr->getProprio()->getNom() == J.getNom()) varGares ++;
-	return varGares;
+	return varGares;*/
 }

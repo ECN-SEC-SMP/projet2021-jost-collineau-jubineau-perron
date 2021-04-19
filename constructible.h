@@ -1,12 +1,15 @@
 #pragma once
 #include "achetable.h"
+#include "joueur.h"
+#include <stdio.h>
 
-class Constructible : public Achetable                    //Case constructible
+//Case constructible
+class Constructible : public Achetable                    
 {
   public :
     Constructible(string nom, int id, Joueur* proprietaire, int prix);    //Constructeur
 
-    int calculLoyer(string nom);                          //Calcul du loyer
+    int calculLoyer(void);                          //Calcul du loyer. On prend un loyer de base (case non batie) correspondant à 50% du prix de vente
     bool construire(int type);
     bool upgrade(int batToUpgrade);
 

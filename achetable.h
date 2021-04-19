@@ -16,8 +16,8 @@ class Achetable : public Case                             //Case achetable
 
     Achetable(string nom, int id, Joueur* proprietaire, int prix);      //Constructeur
 
-    bool acheter(Joueur* acheteur);                             //Fonction d'achat et de transfer de propriété
-    int virtual calculLoyer(string nom);                        //Calcul du loyer
+    bool acheter(Joueur* acheteur);                             //Fonction d'achat. Renvoie 1 si l'achat se fait, 0 sinon
+    //int virtual calculLoyer(string nom);                        //Calcul du loyer
 		Joueur* getProprio();
     int getPrix();
     int getLoyer();

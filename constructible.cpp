@@ -1,7 +1,6 @@
 #include "constructible.h"
-//#include "joueur.h"
 
-Constructible::Constructible(string nom, int id, Joueur* propriétaire, int prix) : Achetable(nom, id, proprietaire, prix)
+Constructible::Constructible(string nom, int id, Joueur* proprietaire, int prix) : Achetable(nom, id, proprietaire, prix)
 {
   this -> nivBat1 = 0;
   this -> nivBat2 = 0;
@@ -20,10 +19,27 @@ int Constructible::getBat3(){
   return this->nivBat3;
 }
 
+/*int Constructible::calculLoyer(void)
+{
+  int loyer = 0;
+  int prixCase = this -> getPrix();
+  
+  //On rajoute 10% du prix
+  loyer = (prixCase/2) + ((prixCase/10) * getBat1) + ((prixCase/10) * getBat2) + ((prixCase/10) * getBat3);  
+}
+}
+*/
+
+
+
+// int calculLoyer(void);                          //Calcul du loyer
+// bool construire(int type);
+// bool upgrade(int batToUpgrade);
+
 //Surchage de l'opérateur << pour l'affichage
 ostream& operator<<(ostream& os, Constructible c)
 {
-    os << c.getProprio()->getNom() << " (coût: " << to_string(c.getPrix()) << " ) ";
+    os << c.getNom() << " (coût: " << to_string(c.getPrix()) << " ) ";
     if(c.getProprio() == nullptr){
       cout << "- sans proprietaire\n";
     }else{

@@ -12,6 +12,7 @@ Joueur::Joueur(string name)
 
 bool Joueur::payer(Joueur* j, int price)  //permet de payer un joueur
 {
+  cout<<this->nom<<" doit payer "<<price<<" a "<<j->getNom()<<endl;
   if(this->fortune >= price)  //si la fortune du joueur est inférieure ou égale au prix à payer...
   {
     this->fortune = this->fortune - price;  //soustraire le prix à la fortune du joueur
@@ -28,6 +29,7 @@ bool Joueur::payer(Joueur* j, int price)  //permet de payer un joueur
 void Joueur::deplacer(int deplacement)  //permet de déplacer le joueur en fonction de la valeur en paramètre
 {
   this->position = (this->position + deplacement)%40; //modulo 40 pour boucler sur le plateau
+  // cout<<this->nom<<" se retrouve en case "<<this->po
 }
 
 string Joueur::getNom() const

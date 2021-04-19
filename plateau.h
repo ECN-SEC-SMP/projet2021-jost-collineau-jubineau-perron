@@ -3,7 +3,8 @@
 #include <vector>
 
 //class Joueur;
-//#include "case.h"
+#include "case.h"
+#include "joueur.h"
 using namespace std;
 
 
