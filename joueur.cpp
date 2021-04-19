@@ -62,3 +62,14 @@ void Joueur::afficher_info_joueur()
   cout << "Position = " << this->getPosition() << endl;
   cout << "           "<< endl;
 }
+
+/*
+void Joueur::tourDeJeu(){
+	int faceDe = lancerDe();
+	this->deplacer(faceDe);
+	cout << "le joueur " << this->getNom() << "passe en case n." << this->getPosition();
+	if ( !( faceDe % 2 == 0)){	// lancer de dé impair
+		if (refplateau-> )
+	}	
+	return;
+}*/

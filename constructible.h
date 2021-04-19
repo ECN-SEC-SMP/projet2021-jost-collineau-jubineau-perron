@@ -17,7 +17,10 @@ class Constructible : public Achetable
     int getBat2();
     int getBat3();
 
+    void afficher(void);
 
+    //Surchage de l'opérateur << pour l'affichage
+    //ostream& operator<<(ostream& os, Constructible c);
   
   protected :
   
@@ -29,5 +32,3 @@ class Constructible : public Achetable
     int nivBat3;                                          //Niveau du batiment 3
 };
 
-//Surchage de l'opérateur << pour l'affichage
-ostream& operator<<(ostream& os, Constructible c);

@@ -12,8 +12,6 @@ class Achetable : public Case                             //Case achetable
     Joueur* proprietaire;  //pointeur vers le proprietaire
 
   public :
-
-
     Achetable(string nom, int id, Joueur* proprietaire, int prix);      //Constructeur
 
     bool acheter(Joueur* acheteur);                             //Fonction d'achat. Renvoie 1 si l'achat se fait, 0 sinon

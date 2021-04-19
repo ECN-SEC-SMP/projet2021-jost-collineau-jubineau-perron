@@ -10,3 +10,6 @@ string Case::getNom(){
   return this->nom;
 }
 
+void Case::afficher(void){
+  cout << this->nom;
+}

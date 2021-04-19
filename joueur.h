@@ -20,19 +20,21 @@ class Joueur
     string nom;
     // int id; ?? pas encore utilisé
     int position;
+    int nbGares;
 
   public :
     Joueur();
     Joueur(string name);
-    //Plateau *refplateau;
+    Plateau *refplateau;
 
     bool payer(Joueur* j, int price);
     void deplacer(int deplacement);
-    
+    void tourDeJeu();
     string getNom() const;
     void setFortune(int money);
     int getFortune() const;
     int getPosition() const;
+    int nbGares(){return nbGares;}
 
     void afficher_info_joueur();
 };

@@ -37,3 +37,10 @@ bool Achetable::acheter(Joueur* acheteur)
   }
   else {return false;}
 }
+
+/*
+//Surchage de l'opérateur << pour l'affichage
+ostream& Achetable::operator<<(ostream& os, Achetable c){
+  os << c.getNom();
+    return os;
+}*/

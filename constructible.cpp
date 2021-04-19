@@ -141,7 +141,34 @@ bool Constructible::upgrade(int batToUpgrade)
 }
 
 //Surchage de l'opérateur << pour l'affichage
-ostream& operator<<(ostream& os, Constructible c)
+void Constructible::afficher(void)
+{
+    cout << this->nom << " (coût: " << to_string(this->prix) << " ) ";
+    if(this->proprietaire == nullptr){
+      cout << "- sans proprietaire\n";
+    }else{
+      cout << "proprietaire: " << this->proprietaire->getNom() << ", ";
+
+      int nbMaison = 0, nbHotel = 0;
+
+      if(this->nivBat1 == 1)nbMaison++;
+      if(this->nivBat1 == 2)nbHotel++;
+      
+      if(this->nivBat2 == 1)nbMaison++;
+      if(this->nivBat2 == 2)nbHotel++;
+
+      if(this->nivBat2 == 1)nbMaison++;
+      if(this->nivBat3 == 2)nbHotel++;
+
+      if(nbMaison != 0){ cout << to_string(nbMaison) << " maisons " ;}
+      if(nbHotel != 0){ cout << ", " << to_string(nbHotel) << " hotels";}
+
+      cout << ", loyer = " << to_string(this->loyer) << "\n"; 
+    }
+}
+/*
+//Surchage de l'opérateur << pour l'affichage
+ostream& Constructible::operator<<(ostream& os, Constructible c)
 {
     os << c.getNom() << " (coût: " << to_string(c.getPrix()) << " ) ";
     if(c.getProprio() == nullptr){
@@ -166,4 +193,4 @@ ostream& operator<<(ostream& os, Constructible c)
       cout << ", loyer = " << to_string(c.getLoyer()) << "\n"; 
     }
     return os;
-}
+}*/
