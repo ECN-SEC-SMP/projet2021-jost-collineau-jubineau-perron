@@ -9,9 +9,23 @@
 int main() {
   Plateau monPlateau;
 
+	Joueur * J1  = new Joueur("Olivier");
+  Joueur * J2 = new Joueur("Celine");
+	monPlateau.afficher();
+	
+	J1->afficher_info_joueur();
+  J2->afficher_info_joueur();
+	
+	monPlateau.tourJoueur(J1);
+	J1->afficher_info_joueur();
+	monPlateau.tourJoueur(J2);
+	J2->afficher_info_joueur();
+
+	/*
+	Plateau monPlateau;
 	Joueur J1 ("Olivier");
   Joueur J2 ("Celine");
-
+	
   J1.afficher_info_joueur();
   J2.afficher_info_joueur();
   
@@ -30,10 +44,11 @@ int main() {
 
   Gare g1("Quai 9 3/4", 15, nullptr, 2000);
   Gare g2("Gare de Lionne", 16, &J2, 2000);
-  
-  //g2.calculLoyer(&monPlateau);
+  g1.calculLoyer();
+  g2.calculLoyer();
   g1.afficher();g2.afficher();	
-
-	monPlateau.afficher();
+  cout << "\n";
+	*/
+  
   return 0;
 }

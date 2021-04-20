@@ -11,5 +11,5 @@ string Case::getNom(){
 }
 
 void Case::afficher(void){
-  cout << this->nom;
+  cout << id << " - " << this->nom << "\n";
 }

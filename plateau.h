@@ -4,11 +4,12 @@
 #include <vector>
 
 //class Joueur;
+#include "achetable.h"
 #include "case.h"
 #include "gare.h"
+#include "service.h"
 #include "non_achetable.h"
 #include "constructible.h"
-#include "service.h"
 #include "joueur.h"
 using namespace std;
 

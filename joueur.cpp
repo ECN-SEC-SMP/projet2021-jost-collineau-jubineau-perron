@@ -12,17 +12,20 @@ Joueur::Joueur(string name)
 
 bool Joueur::payer(Joueur* j, int price)  //permet de payer un joueur
 {
-  cout<<this->nom<<" doit payer "<<price<<" a "<<j->getNom()<<endl;
-  cout<<endl;
+  cout << this->nom << " veut payer " 
+			 << price			<< " a " 
+			 << j->getNom() << "..." ;
+
   if(this->fortune >= price)  //si la fortune du joueur est inférieure ou égale au prix à payer...
   {
     this->fortune = this->fortune - price;  //soustraire le prix à la fortune du joueur
-    j->setFortune(price);                   //ajouter la valeur du prix à payer à l'autre joueur
-    
+    j->setFortune(j->getFortune() + price );                   //ajouter la valeur du prix à payer à l'autre joueur
+    cout << "paiement ok." << endl;
     return true;
   }
   else
   {
+		cout << "fonds insuffisants." << endl;
     return false; //si le prix est plus élevé que la fortune du joueur, on retourne false
   }
 }
@@ -41,7 +44,7 @@ string Joueur::getNom() const
 
 void Joueur::setFortune(int money)
 {
-  this->fortune = this->fortune + money;  //permet d'ajouter de l'argent à la fortune du joueur
+  this->fortune = money;  //permet de modifier la fortune
 }
 
 int Joueur::getFortune() const

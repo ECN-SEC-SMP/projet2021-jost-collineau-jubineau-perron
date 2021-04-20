@@ -6,4 +6,5 @@ class Non_achetable : public Case                             //Case achetable
 {
   public :
     Non_achetable(string nom, int id);               //Constructeur
+		bool isAchetable() {return false;}
 };

@@ -34,7 +34,8 @@ class Joueur
     void setFortune(int money);
     int getFortune() const;
     int getPosition() const;
-    int nbGares(){return nbGares;}
+    int getNbGares(){return nbGares;}
+    void setNbGares(int n){nbGares = n;}
 
     void afficher_info_joueur();
 };

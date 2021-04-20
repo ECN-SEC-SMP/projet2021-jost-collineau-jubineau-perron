@@ -19,14 +19,15 @@ int Constructible::getBat3(){
   return this->nivBat3;
 }
 
-int Constructible::calculLoyer(void)
+int Constructible::calculLoyer()
 {
   int loyer = 0;
   int prixCase = this -> getPrix();
   
   //On rajoute 10% du prix pour chaque maison sur le terrain et 20% pour chaque hotel
-  loyer = (prixCase/2) + ((prixCase/10) * this -> getBat1()) + ((prixCase/10) * this -> getBat2()) + ((prixCase/10) * this -> getBat3());
-
+  loyer = (prixCase/2) 	+ ((prixCase/10) * this -> getBat1()) 
+												+ ((prixCase/10) * this -> getBat2()) 
+												+ ((prixCase/10) * this -> getBat3());
   this -> setLoyer(loyer);
 
   return loyer;
@@ -140,10 +141,10 @@ bool Constructible::upgrade(int batToUpgrade)
   return false;
 }
 
-//Surchage de l'opérateur << pour l'affichage
+//Fonction d'affichage
 void Constructible::afficher(void)
 {
-    cout << this->nom << " (coût: " << to_string(this->prix) << " ) ";
+    cout << id << " - " << this->nom << " (coût: " << to_string(this->prix) << " ) ";
     if(this->proprietaire == nullptr){
       cout << "- sans proprietaire\n";
     }else{
@@ -163,7 +164,7 @@ void Constructible::afficher(void)
       if(nbMaison != 0){ cout << to_string(nbMaison) << " maisons " ;}
       if(nbHotel != 0){ cout << ", " << to_string(nbHotel) << " hotels";}
 
-      cout << ", loyer = " << to_string(this->loyer) << "\n"; 
+      cout << ", loyer = " << to_string(this->getLoyer()) << "\n"; 
     }
 }
 /*

@@ -9,7 +9,7 @@ class Constructible : public Achetable
   public :
     Constructible(string nom, int id, Joueur* proprietaire, int prix);    //Constructeur
 
-    int calculLoyer(void);                          //Calcul du loyer. On prend un loyer de base (case non batie) correspondant à 50% du prix de vente
+    int calculLoyer();                          //Calcul du loyer. On prend un loyer de base (case non batie) correspondant à 50% du prix de vente
     bool construire(int type);
     bool upgrade(int batToUpgrade);
 
@@ -17,7 +17,7 @@ class Constructible : public Achetable
     int getBat2();
     int getBat3();
 
-    void afficher(void);
+    void afficher(void) override;
 
     //Surchage de l'opérateur << pour l'affichage
     //ostream& operator<<(ostream& os, Constructible c);

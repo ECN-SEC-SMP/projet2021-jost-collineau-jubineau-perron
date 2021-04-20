@@ -16,6 +16,7 @@ int Achetable::getPrix(){
 }
 
 int Achetable::getLoyer(){
+	this->calculLoyer();
   return this->loyer;
 }
 
@@ -26,16 +27,30 @@ void Achetable::setLoyer(int nouveauLoyer)
 
 bool Achetable::acheter(Joueur* acheteur)
 {
-  if (this -> proprietaire != NULL)
+  if (this -> proprietaire == NULL)
   {
-    if(this -> proprietaire -> getFortune() >= this -> prix)
+    if( acheteur -> getFortune() >= this -> prix)
     {
-      int nouveauSolde = (this -> proprietaire -> getFortune()) - (this -> prix);
-      this -> proprietaire -> setFortune(nouveauSolde);
+      int nouveauSolde = ( acheteur -> getFortune()) - (this -> prix);
+      acheteur -> setFortune(nouveauSolde);
+			this -> proprietaire = acheteur;
+      return true;
     }
     else {return false;}
   }
   else {return false;}
+}
+
+void Achetable::afficher(void)
+{
+    cout << id << " - " << this->nom << " (coût: " << to_string(this->prix) << " ) ";
+    if(this->proprietaire == nullptr){
+      cout << "- sans proprietaire\n";
+    }else{
+      cout << "proprietaire: " << this->proprietaire->getNom() << ", ";
+
+      cout << ", loyer = " << to_string(this->loyer) << "\n"; 
+    }
 }
 
 /*

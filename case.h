@@ -13,10 +13,11 @@ class Case                                  //Classe de base pour toutes les cas
   public :
     Case(string nom, int id);               //Constructeur
     string getNom(void);
+		virtual bool isAchetable() = 0;
 
-		int getID() {return id;};
-    void afficher(void);
-    //Surchage de l'opérateur << pour l'affichage
-    //ostream& operator<<(ostream& os, Case c);                               
+	int getID() {return id;};
+    virtual void afficher(void);                           
 };
 
+//Surchage de l'opérateur << pour l'affichage
+//ostream& operator<<(ostream& os, Case c);
