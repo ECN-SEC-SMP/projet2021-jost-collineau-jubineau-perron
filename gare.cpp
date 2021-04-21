@@ -6,7 +6,8 @@ Gare::Gare(string nom, int id, Joueur* proprietaire, int prix) : Achetable(nom, 
   
 }
 
-bool Gare::acheter(Joueur* acheteur){
+bool Gare::acheter(Joueur* acheteur)
+{
   bool b = true;
   b = Achetable::acheter(acheteur);
   acheteur->setNbGares(acheteur->getNbGares()+1);
@@ -15,7 +16,8 @@ bool Gare::acheter(Joueur* acheteur){
 
 int Gare::calculLoyer()
 {
-  if(proprietaire != nullptr){
+  if(proprietaire != nullptr)
+  {
     int loyer = 0;
     if (this->proprietaire->getNbGares() == 4)
     {
@@ -37,9 +39,12 @@ int Gare::calculLoyer()
 ostream& operator<<(ostream& os, Gare c)
 {
     os << c.getNom() << " (coût: " << to_string(c.getPrix()) << " ) ";
-    if(c.getProprio() == nullptr){
+    if(c.getProprio() == nullptr)
+    {
       cout << "- sans proprietaire\n";
-    }else{
+    }
+    else
+    {
       cout << "proprietaire: " << c.getProprio()->getNom() << ", ";
 
       cout << "loyer = " << to_string(c.getLoyer()) << "\n"; 

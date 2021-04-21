@@ -17,16 +17,19 @@ class Plateau
 {
 	private :
 		vector <Case*> cases;
-		vector <Joueur> joueurs;
+		vector <Joueur*> joueurs;
 		int lancerDe();
+		void checkFaillites();
 
   public :
 		Plateau();
 		void initPlateau();
+		void addJoueur(Joueur *J);
     void afficher(void);
 		//void avancer(); // ????
 		void tourJoueur(Joueur *J);
-		void tourDeJeu();
+		void tourDeTable();
 		bool finDePartie();
-    
+    void supprimer_joueur(string nom);
+    void afficherJoueurs();
 };

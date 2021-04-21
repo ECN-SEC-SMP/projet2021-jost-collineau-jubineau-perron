@@ -1,4 +1,5 @@
 #include "plateau.h"
+#include <stdlib.h>
 using namespace std;
 
 
@@ -16,8 +17,12 @@ int Plateau::lancerDe(){
 	return (rand() % 6) + 1;;
 }
 
+void Plateau::addJoueur(Joueur *J){
+	joueurs.push_back(J);
+}
+
 void Plateau::initPlateau(){
-	int id=0;
+	int id=1;
 	cases.push_back(new Non_achetable("Depart", id++));	//case 0
 	cases.push_back(new Constructible("Boulevard de Belleville", id++, nullptr, 60));	//case 1
 	cases.push_back(new Non_achetable("Caisse de Communauté", id++));
@@ -70,13 +75,18 @@ void Plateau::afficher(){
   }
 }
 
-
 void Plateau::tourJoueur(Joueur *J){
-	int faceDe = 9 ; //lancerDe();
-	J->deplacer(faceDe);
-	cout	<< "-- Debut du tour de " << J->getNom() <<" --" << endl ; 
-	cout	<< "le lancer de dé a donné " << faceDe 
-				<< " , le joueur passe en case n." << (J->getPosition()) << ":" << endl;
+  /* initialize random seed: */
+  srand (time(NULL));
+	int faceDe = 6;
+  int resultLancer = rand() % faceDe + 1;
+
+  int oldPos = J->getPosition();
+	J->deplacer(resultLancer);
+	cout	<< "-- Debut du tour de " << J->getNom() <<" --" << endl
+	      << "le lancer de dé a donné " << resultLancer 
+				<< " , le joueur passe en case n." << J->getPosition()+1
+        << "(Précedement " << oldPos+1 << ")" << endl;
 	cases[J->getPosition()]->afficher(); 
 
 	// NOUVELLE POSITION = CASE ACHETABLE
@@ -91,7 +101,7 @@ void Plateau::tourJoueur(Joueur *J){
 			int prixCase = CaseAchetablePtr->getPrix();
 
 			//Si J peut se permettre l'achat ET lancer dé impair -> achat systématique de la case
-			if (prixCase <= J->getFortune()  &&  !( faceDe % 2 == 0)) {
+			if (prixCase <= J->getFortune()  &&  !( resultLancer % 2 == 0)) {
 				cout	<< "Le lancer est impair et les moyens suffisants ; achat de la case" << endl ;	
 				CaseAchetablePtr->acheter(J);	//Achat case 
 				// -> A IMPLEMENTER : CHECK ACHAT OK ? (acheter()renvoie booleen)
@@ -109,28 +119,71 @@ void Plateau::tourJoueur(Joueur *J){
 	// NOUVELLE POSITION = CASE NON ACHETABLE
 	else {
 		cout	<< "La nouvelle case N'EST PAS achetable ... A IMPLEMENTER" << endl ;
+
+    //Case Police renvoie à la case Prison
+    if(cases[J->getPosition()]->getID() == 30){
+      J->setPosition(10);
+      cout << J->getNom() << " est envoyé(e) en prison !\n";
+    }
 	}
 	cout << "-- Fin du tour pour " << J->getNom() << "--" << endl ;
 	cout << endl; 
 	return;
 }
 
-/*
-void Plateau::tourDeJeu(){
-	//si joueur arrive sur case dont il n'est pas proprio (et qui a un proprio non null) executer calculloyer sur la case
+void Plateau::tourDeTable(){
   int flag;
   int nb_joueurs = joueurs.size();
 
-  for(int i=0; i<nb_joueurs; i++)
-  {
-    cout<<"Au tour du joueur "<<joueurs[i].getNom()<<endl;
-    std::getchar();
-    tourJoueur(joueurs[i]); //lance un dé, et déplace le joueur
-  }
+  for(int i=0; i<nb_joueurs; i++)  {
+		//ignorer joueurs en faillite
+		if (! joueurs[i]->getFaillite()){
 
-	return;                           //Bien penser à n'appeler la fonction acheter que si le chiffre donné par le dé est impaire
-}*/
-/*
+			cout 	<< "Au tour du joueur " << joueurs[i]->getNom(); 
+      
+      // clear console
+      cout << "\033c";
+
+    	tourJoueur(joueurs[i]); //faire un tour pour le joueur i
+      joueurs[i]->afficher_info_joueur();
+
+      cout	<< "\nAppuyer sur Entrée pour continuer ..." << endl;
+    	std::getchar();
+		}
+  }
+	checkFaillites();	//éliminer les joueurs ayant fait faillite
+	return;
+}
+
+void Plateau::checkFaillites(){
+	int nb_joueurs = joueurs.size();
+	for(int i=0; i<nb_joueurs; i++)
+  {
+		if (joueurs[i]->getFortune() <= 0) {
+			cout 	<< "Le joueur " << joueurs[i]->getNom() << "a fait faillite et est retiré de la partie" << endl;
+			joueurs[i]->setFaillite( true );
+		}
+  }
+}
+
 bool Plateau::finDePartie(){
-	return 0;
-}*/
+	int joueursEnLice = 0;
+	int nb_joueurs = joueurs.size();
+	for(int i=0; i<nb_joueurs; i++)
+  {
+		if ( ! joueurs[i]->getFaillite()) {
+			joueursEnLice ++;			
+		}
+  }
+	if (joueursEnLice <= 1) {
+		cout << "-- FIN PARTIE DETECTEE --" << endl;
+		return true;
+	}	
+	else return false ;
+}
+
+void Plateau::afficherJoueurs(){
+  for(int i=0; i<joueurs.size(); i++){
+    joueurs[i]->afficher_info_joueur();
+  }
+}

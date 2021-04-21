@@ -5,8 +5,16 @@ Service::Service(string nom, int id, Joueur* proprietaire, int prix) : Achetable
   
 }
 
+bool Service::acheter(Joueur* acheteur)
+{
+  bool b = true;
+  b = Achetable::acheter(acheteur);
+  acheteur->setNbServices(acheteur->getNbServices()+1);
+  return b;
+}
+
 void Service::afficher(void){
-  cout << this->nom << " (coût: " << to_string(prix) << " ) ";
+  cout << this->id << " - " << this->nom << " (coût: " << to_string(prix) << " ) ";
   if(proprietaire == nullptr){
     cout << "- sans proprietaire\n";
   }else{
@@ -16,9 +24,25 @@ void Service::afficher(void){
   }
 }
 
-int Service::calculLoyer() {
-	// A IMPLEMENTER
-	return 0;
+int Service::calculLoyer() 
+{
+  if(proprietaire != nullptr)
+  {
+    int loyer = 0;
+    if (this->proprietaire->getNbServices() == 2)
+    {
+      loyer = 2500;                               //Bonus si le joueur a tous les services
+    }
+    else
+    {
+      loyer = 1000 * this->proprietaire->getNbServices();
+    }
+
+    this -> setLoyer(loyer);
+    
+    return loyer;
+  }
+  return -1;
 }
 
 //Surchage de l'opérateur << pour l'affichage

@@ -21,21 +21,29 @@ class Joueur
     // int id; ?? pas encore utilisé
     int position;
     int nbGares;
+    int nbServices;
+		bool isFaillite;
 
   public :
     Joueur();
     Joueur(string name);
-    Plateau *refplateau;
 
     bool payer(Joueur* j, int price);
     void deplacer(int deplacement);
     void tourDeJeu();
     string getNom() const;
     void setFortune(int money);
+    void addFortune(int money);
+		void setFaillite(bool etat);
+		bool getFaillite();
     int getFortune() const;
     int getPosition() const;
-    int getNbGares(){return nbGares;}
-    void setNbGares(int n){nbGares = n;}
+    void setPosition(int newPos);
 
+    int getNbGares(void);
+    void setNbGares(int n);
+    int getNbServices(void);
+    void setNbServices(int n);
+    
     void afficher_info_joueur();
 };
