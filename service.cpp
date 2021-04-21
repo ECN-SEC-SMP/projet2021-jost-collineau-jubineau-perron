@@ -9,7 +9,7 @@ bool Service::acheter(Joueur* acheteur)
 {
   bool b = true;
   b = Achetable::acheter(acheteur);
-  acheteur->setNbServices(acheteur->getNbServices()+1);
+  acheteur->addService();
   return b;
 }
 

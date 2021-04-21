@@ -30,6 +30,6 @@ class Plateau
 		void tourJoueur(Joueur *J);
 		void tourDeTable();
 		bool finDePartie();
-    void supprimer_joueur(string nom);
+    void supprimer_joueur(Joueur* J);
     void afficherJoueurs();
 };

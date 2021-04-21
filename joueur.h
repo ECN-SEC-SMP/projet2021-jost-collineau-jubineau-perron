@@ -23,6 +23,7 @@ class Joueur
     int nbGares;
     int nbServices;
 		bool isFaillite;
+    bool tourFait; //Définit si le joueur a fait un tour
 
   public :
     Joueur();
@@ -44,6 +45,7 @@ class Joueur
     void setNbGares(int n);
     int getNbServices(void);
     void setNbServices(int n);
+    void addService();
     
     void afficher_info_joueur();
 };

@@ -9,26 +9,43 @@ Joueur::Joueur(string name)
   this-> fortune = 200;  //on initialise la fortune du joueur à 100000 en début de partie
   this-> position = 0;  //on initialise la position du joueur à 0
 	this->isFaillite = false;
+  this->tourFait = false;
 }
 
-//permet de payer un joueur PEU IMPORTE LE SOLDE
+//permet de payer un joueur
 bool Joueur::payer(Joueur* j, int price)  
 {
   cout << this->nom << " veut payer " 
 			 << price			<< " a " 
 			 << j->getNom() << "..." ;
+  
+  //Paiement ok
+  if( this->fortune > price){
+    this->fortune = this->fortune - price;  //soustraire le prix à la fortune du joueur
+    j->setFortune(j->getFortune() + price );                   //ajouter la valeur du prix à payer à l'autre joueur
+    cout << "paiement ok." << endl;
+    return true;
+  }
 
-  this->fortune = this->fortune - price;  //soustraire le prix à la fortune du joueur
-  j->setFortune(j->getFortune() + price );                   //ajouter la valeur du prix à payer à l'autre joueur
-  cout << "paiement ok." << endl;
-  return true;
+  //Pas assez de fortune
+  else{
+      cout << "Pas assez de fonds" << endl;
+      isFaillite = true;
+      fortune=0;
+      cout << "\e[0;31m" << nom << " est en FAILLITE" << endl;
+    return false;
+  }
+  
 }
 
 void Joueur::deplacer(int deplacement)  //permet de déplacer le joueur en fonction de la valeur en paramètre
 {
+  int oldPos=this->position;
   this->position = (this->position + deplacement)%40; //modulo 40 pour boucler sur le plateau
-  //cout<<this->nom<<" se retrouve en case "<<this->position<<endl;
-  cout<<endl;
+  if((position+deplacement)-oldPos < 0){
+    cout << "Passage par la case départ !" << endl;
+    this->fortune += 200;
+  }
 }
 
 string Joueur::getNom() const
@@ -62,6 +79,7 @@ void Joueur::afficher_info_joueur()
   cout << "Nom = " << this->getNom() << endl;
   cout << "Fortune = " << this->getFortune() << endl;
   cout << "Position = " << this->getPosition()+1 << endl;
+  if(isFaillite)cout << "\e[0;31mEn Faillite !\e[0m" << endl;
   cout << "           "<< endl;
 }
 
@@ -98,6 +116,9 @@ bool Joueur::getFaillite(){
 	return this->isFaillite;
 }
 
+void Joueur::addService(){
+  nbServices++;
+}
 /*
 void Joueur::tourDeJeu(){
 	int faceDe = lancerDe();

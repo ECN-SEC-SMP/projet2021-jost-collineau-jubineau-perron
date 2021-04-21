@@ -23,49 +23,49 @@ void Plateau::addJoueur(Joueur *J){
 
 void Plateau::initPlateau(){
 	int id=1;
-	cases.push_back(new Non_achetable("Depart", id++));	//case 0
-	cases.push_back(new Constructible("Boulevard de Belleville", id++, nullptr, 60));	//case 1
+	cases.push_back(new Non_achetable("Depart", id++));	//case 1
+	cases.push_back(new Constructible("Boulevard de Belleville", id++, nullptr, 60));	//case 2
 	cases.push_back(new Non_achetable("Caisse de Communauté", id++));
 	cases.push_back(new Constructible("Rue Lecourbe", id++, nullptr, 60));
-	cases.push_back(new Non_achetable("Impots", id++));
-	cases.push_back(new Gare("Gare Montparnasse", id++, nullptr, 200));	//case 5
+	cases.push_back(new Non_achetable("Impots", id++)); //case 5
+	cases.push_back(new Gare("Gare Montparnasse", id++, nullptr, 200));	
 	cases.push_back(new Constructible("Rue de Vaugirard", id++, nullptr, 100));
 	cases.push_back(new Non_achetable("chance", id++));
 	cases.push_back(new Constructible("Rue de Courcelle", id++, nullptr, 100));
-	cases.push_back(new Constructible("Avenue de République", id++, nullptr, 120));
-	cases.push_back(new Non_achetable("Prison", id++));	//case 10
+	cases.push_back(new Constructible("Avenue de République", id++, nullptr, 120)); //case 10
+	cases.push_back(new Non_achetable("Prison", id++));	
 
 	cases.push_back(new Constructible("Boulevard de la Villette", id++, nullptr, 140));
 	cases.push_back(new Service("Compagnie d'électricité", id++, nullptr, 150));
 	cases.push_back(new Constructible("Avenue de Neuilly", id++, nullptr, 140));
-	cases.push_back(new Constructible("Rue de Paradis", id++, nullptr, 160));
-	cases.push_back(new Gare("Gare de Lyon", id++, nullptr, 200));	//case 15
+	cases.push_back(new Constructible("Rue de Paradis", id++, nullptr, 160)); //case 15
+	cases.push_back(new Gare("Gare de Lyon", id++, nullptr, 200));	
 	cases.push_back(new Constructible("Avenue Mozart", id++, nullptr, 180));
 	cases.push_back(new Non_achetable("Caisse de Communauté", id++));
 	cases.push_back(new Constructible("Boulevard Saint Michel", id++, nullptr, 180));
-	cases.push_back(new Constructible("Place Pigalle", id++, nullptr, 200)); 
-	cases.push_back(new Non_achetable("free parking", id++));//case 20
+	cases.push_back(new Constructible("Place Pigalle", id++, nullptr, 200)); //case 20
+	cases.push_back(new Non_achetable("free parking", id++));
 
 	cases.push_back(new Constructible("Avenue Matignon", id++, nullptr, 220));
 	cases.push_back(new Non_achetable("chance", id++));
 	cases.push_back(new Constructible("Boulevard Malseherbes", id++, nullptr, 220));
-	cases.push_back(new Constructible("Avenue Henri-Martin", id++, nullptr, 240));
-	cases.push_back(new Gare("Gare du Nord", id++, nullptr, 200));	//case 25
+	cases.push_back(new Constructible("Avenue Henri-Martin", id++, nullptr, 240)); //case 25
+	cases.push_back(new Gare("Gare du Nord", id++, nullptr, 200));	
 	cases.push_back(new Constructible("Faubourg Saint-Honoré", id++, nullptr, 260));
 	cases.push_back(new Constructible("Place de la Bourse", id++, nullptr, 260));
 	cases.push_back(new Non_achetable("Compagnie des Eaux", id++));
-	cases.push_back(new Constructible("Rue de la Fayette", id++, nullptr, 280));
-	cases.push_back(new Non_achetable("Police", id++));	//case 30
+	cases.push_back(new Constructible("Rue de la Fayette", id++, nullptr, 280)); //case 30
+	cases.push_back(new Non_achetable("Police", id++));	
 
 	cases.push_back(new Constructible("Avenue Breteuil", id++, nullptr, 300));
 	cases.push_back(new Constructible("Avenue Foch", id++, nullptr, 300));
 	cases.push_back(new Non_achetable("Caisse de Communauté", id++));
-	cases.push_back(new Constructible("Boulevard des Capucines", id++, nullptr, 320));
-	cases.push_back(new Gare("Gare Saint-Lazare", id++, nullptr, 200));	//case 35
+	cases.push_back(new Constructible("Boulevard des Capucines", id++, nullptr, 320)); //case 35
+	cases.push_back(new Gare("Gare Saint-Lazare", id++, nullptr, 200));	
 	cases.push_back(new Non_achetable("chance", id++));
 	cases.push_back(new Constructible("Avenue des Champs-Élysées", id++, nullptr, 350));
 	cases.push_back(new Non_achetable("Taxe de Luxe", id++));
-	cases.push_back(new Constructible("Rue de la Paix", id++, nullptr, 400));	//case 39
+	cases.push_back(new Constructible("Rue de la Paix", id++, nullptr, 400));	//case 40
 }
 
 void Plateau::afficher(){
@@ -82,11 +82,11 @@ void Plateau::tourJoueur(Joueur *J){
   int resultLancer = rand() % faceDe + 1;
 
   int oldPos = J->getPosition();
-	J->deplacer(resultLancer);
 	cout	<< "-- Debut du tour de " << J->getNom() <<" --" << endl
-	      << "le lancer de dé a donné " << resultLancer 
-				<< " , le joueur passe en case n." << J->getPosition()+1
+	      << "le lancer de dé a donné " << resultLancer
+	      << " , le joueur passe en case n." << (J->getPosition()+resultLancer)%40 + 1
         << "(Précedement " << oldPos+1 << ")" << endl;
+  J->deplacer(resultLancer);
 	cases[J->getPosition()]->afficher(); 
 
 	// NOUVELLE POSITION = CASE ACHETABLE
@@ -118,12 +118,19 @@ void Plateau::tourJoueur(Joueur *J){
 
 	// NOUVELLE POSITION = CASE NON ACHETABLE
 	else {
-		cout	<< "La nouvelle case N'EST PAS achetable ... A IMPLEMENTER" << endl ;
-
-    //Case Police renvoie à la case Prison
-    if(cases[J->getPosition()]->getID() == 30){
+		//Case Police renvoie à la case Prison
+    if(cases[J->getPosition()]->getID() == 31){
       J->setPosition(10);
       cout << J->getNom() << " est envoyé(e) en prison !\n";
+    }
+
+    //Case Départ -> +200€
+    else if(cases[J->getPosition()]->getID() == 1){
+      J->addFortune(200);
+    }
+
+    else {
+      cout	<< "La nouvelle case N'EST PAS achetable ... A IMPLEMENTER" << endl ;
     }
 	}
 	cout << "-- Fin du tour pour " << J->getNom() << "--" << endl ;
@@ -159,7 +166,7 @@ void Plateau::checkFaillites(){
 	int nb_joueurs = joueurs.size();
 	for(int i=0; i<nb_joueurs; i++)
   {
-		if (joueurs[i]->getFortune() <= 0) {
+		if (joueurs[i]->getFaillite() == true) {
 			cout 	<< "Le joueur " << joueurs[i]->getNom() << "a fait faillite et est retiré de la partie" << endl;
 			joueurs[i]->setFaillite( true );
 		}
@@ -174,9 +181,13 @@ bool Plateau::finDePartie(){
 		if ( ! joueurs[i]->getFaillite()) {
 			joueursEnLice ++;			
 		}
+    else{
+      joueurs.erase(joueurs.begin()+i);
+    }
   }
 	if (joueursEnLice <= 1) {
-		cout << "-- FIN PARTIE DETECTEE --" << endl;
+		cout << "-- FIN PARTIE DETECTEE --" << endl
+         << " \e[0;32mGagnant: " << joueurs[0]->getNom() << " !" << endl;
 		return true;
 	}	
 	else return false ;
@@ -186,4 +197,8 @@ void Plateau::afficherJoueurs(){
   for(int i=0; i<joueurs.size(); i++){
     joueurs[i]->afficher_info_joueur();
   }
+}
+
+void Plateau::supprimer_joueur(Joueur* J){
+  //joueurs.erase(J);
 }

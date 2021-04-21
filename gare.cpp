@@ -18,18 +18,13 @@ int Gare::calculLoyer()
 {
   if(proprietaire != nullptr)
   {
-    int loyer = 0;
-    if (this->proprietaire->getNbGares() == 4)
-    {
-      loyer = 5000;                               //Bonus si le joueur a toutes les gares
-    }
-    else
-    {
-      loyer = 1000 * this->proprietaire->getNbGares();
-    }
+    int loyer = 25;
+    if (this->proprietaire->getNbGares() == 4)loyer = 200;
+    if (this->proprietaire->getNbGares() == 3)loyer = 100;
+    if (this->proprietaire->getNbGares() == 2)loyer = 50;
+    if (this->proprietaire->getNbGares() == 1)loyer = 25;
 
     this -> setLoyer(loyer);
-    
     return loyer;
   }
   return -1;
