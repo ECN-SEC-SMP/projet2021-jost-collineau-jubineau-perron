@@ -1,26 +1,36 @@
 #include "constructible.h"
 
-Constructible::Constructible(string nom, int id, Joueur* proprietaire, int prix) : Achetable(nom, id, proprietaire, prix)
-{
+Constructible::Constructible(string nom, int id, Joueur* proprietaire, int prix) : Achetable(nom, id, proprietaire, prix) {
   this -> nivBat1 = 0;
   this -> nivBat2 = 0;
   this -> nivBat3 = 0;
 }
 
-int Constructible::getBat1(){
+/*
+*	retourne la valeur nivBat1;
+*/
+int Constructible::getBat1() {
   return this->nivBat1;
 }
 
-int Constructible::getBat2(){
+/*
+*	retourne la valeur nivBat2;
+*/
+int Constructible::getBat2() {
   return this->nivBat2;
 }
 
-int Constructible::getBat3(){
+/*
+*	retourne la valeur nivBat3;
+*/
+int Constructible::getBat3() {
   return this->nivBat3;
 }
 
-int Constructible::calculLoyer()
-{
+/*
+* Calcule le loyer de la case constructible en fonction du nombre de maisons et d'hotels
+*/
+int Constructible::calculLoyer() { 
   int loyer = 0;
   int prixCase = this -> getPrix();
   
@@ -33,34 +43,30 @@ int Constructible::calculLoyer()
   return loyer;
 }
 
-bool Constructible::construire(int type)
-{
+/*
+* Fonction qui permet de CONSTRUIRE un batiment sur un terrain libre
+*/
+bool Constructible::construire(int type) {
   int fortune = this -> getProprio() -> getFortune();
 
-  if ((nivBat1 != 0) && (nivBat2 != 0) && (nivBat3 != 0))
-  {
+  if ((nivBat1 != 0) && (nivBat2 != 0) && (nivBat3 != 0)) {
     return false;
   }
   
-  if (type == 1)
-  {
-    if ((fortune) >= 300)             //Prix d'une maison : 300€
-    {
-      if (nivBat1 == 0)
-      {
-        this -> getProprio() -> setFortune(fortune - 300);
+  if (type == 1) {
+    if ((fortune) >= 300) {            //Prix d'une maison : 300€
+      if (nivBat1 == 0) {
+        this->getProprio()->setFortune(fortune - 300);
         nivBat1 = 1;
         return true;
       }
-      else if (nivBat2 == 0)
-      {
-        this -> getProprio() -> setFortune(fortune - 300);
+      else if (nivBat2 == 0) {
+        this->getProprio()->setFortune(fortune - 300);
         nivBat2 = 1;
         return true;
       }
-      else if (nivBat3 == 0)
-      {
-        this -> getProprio() -> setFortune(fortune - 300);
+      else if (nivBat3 == 0) {
+        this->getProprio()->setFortune(fortune - 300);
         nivBat3 = 1;
         return true;
       }
@@ -97,6 +103,9 @@ bool Constructible::construire(int type)
   return false;
 }
 
+/*
+* Fonction permettant d'améliorer une maison en hotel
+*/
 bool Constructible::upgrade(int batToUpgrade)
 {
   int fortune = this -> getProprio() -> getFortune();
@@ -141,14 +150,16 @@ bool Constructible::upgrade(int batToUpgrade)
   return false;
 }
 
-//Fonction d'affichage
-void Constructible::afficher(void)
+/*
+*	Surcharge de l'opérateur <<
+*/
+ostream& Constructible::write( ostream& stm )const
 {
-    cout << id << " - " << this->nom << " (coût: " << to_string(this->prix) << " ) ";
+    stm << id << " - " << this->nom << " (coût: " << to_string(this->prix) << " ) ";
     if(this->proprietaire == nullptr){
-      cout << "- sans proprietaire\n";
+      stm << "- sans proprietaire\n";
     }else{
-      cout << "proprietaire: " << this->proprietaire->getNom() << ", ";
+      stm << "proprietaire: " << this->proprietaire->getNom() << ", ";
 
       int nbMaison = 0, nbHotel = 0;
 
@@ -161,37 +172,9 @@ void Constructible::afficher(void)
       if(this->nivBat2 == 1)nbMaison++;
       if(this->nivBat3 == 2)nbHotel++;
 
-      if(nbMaison != 0){ cout << to_string(nbMaison) << " maisons " ;}
-      if(nbHotel != 0){ cout << ", " << to_string(nbHotel) << " hotels";}
+      if(nbMaison != 0){ stm << to_string(nbMaison) << " maisons " ;}
+      if(nbHotel != 0){ stm << ", " << to_string(nbHotel) << " hotels";}
 
-      cout << ", loyer = " << to_string(this->getLoyer()) << "\n"; 
+      stm << ", loyer = " << to_string(loyer) << "\n"; 
     }
 }
-/*
-//Surchage de l'opérateur << pour l'affichage
-ostream& Constructible::operator<<(ostream& os, Constructible c)
-{
-    os << c.getNom() << " (coût: " << to_string(c.getPrix()) << " ) ";
-    if(c.getProprio() == nullptr){
-      cout << "- sans proprietaire\n";
-    }else{
-      cout << "proprietaire: " << c.getProprio()->getNom() << ", ";
-
-      int nbMaison = 0, nbHotel = 0;
-
-      if(c.getBat1() == 1)nbMaison++;
-      if(c.getBat1() == 2)nbHotel++;
-      
-      if(c.getBat2() == 1)nbMaison++;
-      if(c.getBat2() == 2)nbHotel++;
-
-      if(c.getBat3() == 1)nbMaison++;
-      if(c.getBat3() == 2)nbHotel++;
-
-      if(nbMaison != 0){ cout << to_string(nbMaison) << " maisons " ;}
-      if(nbHotel != 0){ cout << ", " << to_string(nbHotel) << " hotels";}
-
-      cout << ", loyer = " << to_string(c.getLoyer()) << "\n"; 
-    }
-    return os;
-}*/

@@ -1,39 +1,28 @@
 #include "achetable.h"
 
-Achetable::Achetable(string nom, int id, Joueur* proprietaire, int prix) : Case(nom, id)
-{
+/*
+*	Constructeur.
+*/
+Achetable::Achetable(string nom, int id, Joueur* proprietaire, int prix) : Case(nom, id) {
   this -> prix = prix;
   this -> proprietaire = proprietaire;
 }
 
-Joueur* Achetable::getProprio()
-{
-	return this -> proprietaire;
-}
-
-int Achetable::getPrix(){
-  return this->prix;
-}
-
-int Achetable::getLoyer(){
-	this->calculLoyer();
-  return this->loyer;
-}
-
-void Achetable::setLoyer(int nouveauLoyer)
-{
-  this -> loyer = nouveauLoyer;
-}
-
-bool Achetable::acheter(Joueur* acheteur)
-{
+/*
+*	Permet à un Joueur 'acheteur' d'acquérir l'Achetable.
+*	retourne : 	- True si l'achat se fait correctement
+*							- False si l'achat ne peut être effectué
+*	Causes de l'écher : solde insuffisant OU propriétaire non nul.
+*	ATTENTION n'a pas d'effet si la case a déjà un propriétaire.
+*/
+bool Achetable::acheter(Joueur* acheteur) {
   if (this -> proprietaire == NULL)
   {
-    if( acheteur -> getFortune() >= this -> prix)
+    if( acheteur->getFortune() >= this->prix)
     {
-      int nouveauSolde = ( acheteur -> getFortune()) - (this -> prix);
-      acheteur -> setFortune(nouveauSolde);
-			this -> proprietaire = acheteur;
+      int nouveauSolde = ( acheteur->getFortune() - this->prix );
+      acheteur->setFortune(nouveauSolde);		//MAJ fortune acheteur
+			this->proprietaire = acheteur;				//MAJ propriétaire
       return true;
     }
     else {return false;}
@@ -41,21 +30,49 @@ bool Achetable::acheter(Joueur* acheteur)
   else {return false;}
 }
 
-void Achetable::afficher(void)
-{
-    cout << id << " - " << this->nom << " (coût: " << to_string(this->prix) << " ) ";
-    if(this->proprietaire == nullptr){
-      cout << "- sans proprietaire\n";
-    }else{
-      cout << "proprietaire: " << this->proprietaire->getNom() << ", ";
+/*
+*	Affiche toutes les informations de la case. Surcharge la méthode afficher de Case.
+*	Infos particulières : propriétaire, loyer, cout d'achat.
+*/
+ostream& Achetable::write( ostream& stm )const {
+  stm << id << " - " << this->nom << " (coût: " << to_string(this->prix) << " ) ";
+  if(this->proprietaire == nullptr){
+    stm << "- sans proprietaire\n";
+  }else{
+    stm << "proprietaire: " << this->proprietaire->getNom() << ", ";
 
-      cout << ", loyer = " << to_string(this->loyer) << "\n"; 
-    }
+    stm << ", loyer = " << to_string(this->loyer) << "\n"; 
+  }
 }
 
 /*
-//Surchage de l'opérateur << pour l'affichage
-ostream& Achetable::operator<<(ostream& os, Achetable c){
-  os << c.getNom();
-    return os;
-}*/
+*	Retourne un pointeur sur le propriétaire de la case.
+*	ATTENTION : le type est Joueur *.
+*/
+Joueur* Achetable::getProprio() {
+	return this->proprietaire;
+}
+
+/*
+*	Retourne le prix d'achat de la case.
+*/
+int Achetable::getPrix() {
+  return this->prix;
+}
+
+/*
+*	Calcule puis retourne la valeur du loyer actuelle pour l'Achetable.
+*	ATTENTION la médhode calculLoyer appelée est virtuelle pure et doit donc être
+*	implémentée dans la classe fille.
+*/
+int Achetable::getLoyer() {
+	calculLoyer();
+  return this->loyer;
+}
+
+/*
+*	Permet e fixer de façon absolue le loyer pour l'Achetable.
+*/
+void Achetable::setLoyer(int nouveauLoyer) {
+  this->loyer = nouveauLoyer;
+}

@@ -1,4 +1,3 @@
-// Your First C++ Program
 #include "joueur.h"
 #include "gare.h"
 //#include "plateau.h"

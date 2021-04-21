@@ -8,19 +8,32 @@ using namespace std;
 #define GARE 2
 #define NON_ACHETABLE 3
 
-
+/*
+*	Constructeur
+*/
 Plateau::Plateau(){
 	initPlateau();
 }
 
+/*
+* Retourne un nombre aléatoire entre 1 et 6.
+*/
 int Plateau::lancerDe(){
-	return (rand() % 6) + 1;;
+	srand (time(NULL));
+	int nbFaces = 6;
+	return (rand() % nbFaces) + 1;;
 }
 
+/*
+* Ajoute un joueur au vecteur de joueurs du plateau.
+*/
 void Plateau::addJoueur(Joueur *J){
 	joueurs.push_back(J);
 }
 
+/*
+* Init du plateau avec les cases du monopoly.
+*/
 void Plateau::initPlateau(){
 	int id=1;
 	cases.push_back(new Non_achetable("Depart", id++));	//case 1
@@ -68,18 +81,26 @@ void Plateau::initPlateau(){
 	cases.push_back(new Constructible("Rue de la Paix", id++, nullptr, 400));	//case 40
 }
 
+/*
+* Affichage du plateau case par case.
+*/
 void Plateau::afficher(){
 	cout << "Affichage du tableau :" << endl;
 	  for(int i=0; i<40 ; i++){
-     cases[i]->afficher();
+     cout << *cases[i];
   }
 }
 
+/*
+* Effectue un tour de jeu pour un joueur J soit :
+*		- Lancer d'un dé
+*		- Mise à jour de la position sur le plateau
+*		- Appliquer les règles du jeu selon la nouvelle position du joueur
+*/
 void Plateau::tourJoueur(Joueur *J){
   /* initialize random seed: */
   srand (time(NULL));
-	int faceDe = 6;
-  int resultLancer = rand() % faceDe + 1;
+  int resultLancer = lancerDe();
 
   int oldPos = J->getPosition();
 	cout	<< "-- Debut du tour de " << J->getNom() <<" --" << endl
@@ -87,7 +108,7 @@ void Plateau::tourJoueur(Joueur *J){
 	      << " , le joueur passe en case n." << (J->getPosition()+resultLancer)%40 + 1
         << "(Précedement " << oldPos+1 << ")" << endl;
   J->deplacer(resultLancer);
-	cases[J->getPosition()]->afficher(); 
+	cout << *cases[J->getPosition()];
 
 	// NOUVELLE POSITION = CASE ACHETABLE
 	if ( cases[J->getPosition()]->isAchetable() ) {	
@@ -138,6 +159,11 @@ void Plateau::tourJoueur(Joueur *J){
 	return;
 }
 
+/*
+* Effectue un tour de jeu pour chaque joueur contenu dans le vecteur joueurs<> du tableau.
+*	On ignore les joueurs en faillite (getFaillite() == true).
+*	ATTENTION : Au moins un joueur doit avoir été ajouté via addJoueur().
+*/
 void Plateau::tourDeTable(){
   int flag;
   int nb_joueurs = joueurs.size();
@@ -162,6 +188,11 @@ void Plateau::tourDeTable(){
 	return;
 }
 
+/*
+* Vérifie la situation financière de chaque joueur du vecteur Joueurs<>.
+*	Si la fortune est inférieure ou égale à 0, on déclare faillite
+*	Les joueurs en faillite seront ignorés lors du jeu.
+*/
 void Plateau::checkFaillites(){
 	int nb_joueurs = joueurs.size();
 	for(int i=0; i<nb_joueurs; i++)
@@ -173,32 +204,37 @@ void Plateau::checkFaillites(){
   }
 }
 
+/*
+* Vérifie si la fin de la partie (1 seul joueur restant) est atteinte.
+*	retourne : 	- true si la partie est terminée (1 seul ou 0 joueurs en lice)
+*							- false si la partie n'est pas terminée
+*/
 bool Plateau::finDePartie(){
 	int joueursEnLice = 0;
 	int nb_joueurs = joueurs.size();
-	for(int i=0; i<nb_joueurs; i++)
-  {
+  Joueur* gagnant;
+	
+	// Recenser les joueurs en lice :
+	for(int i=0; i<nb_joueurs; i++) {
 		if ( ! joueurs[i]->getFaillite()) {
+      gagnant = joueurs[i];
 			joueursEnLice ++;			
 		}
-    else{
-      joueurs.erase(joueurs.begin()+i);
-    }
   }
 	if (joueursEnLice <= 1) {
 		cout << "-- FIN PARTIE DETECTEE --" << endl
-         << " \e[0;32mGagnant: " << joueurs[0]->getNom() << " !" << endl;
+         << " \e[0;32mGagnant: " << gagnant->getNom() << " !" << endl;
 		return true;
 	}	
 	else return false ;
 }
 
+/*
+* Affiche un par un les infos sur chaque joueur encore en jeu
+*		(cad contenu dans le vecteur joueurs<>)
+*/
 void Plateau::afficherJoueurs(){
   for(int i=0; i<joueurs.size(); i++){
     joueurs[i]->afficher_info_joueur();
   }
-}
-
-void Plateau::supprimer_joueur(Joueur* J){
-  //joueurs.erase(J);
 }
