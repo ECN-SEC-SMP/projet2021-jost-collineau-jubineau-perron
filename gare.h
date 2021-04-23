@@ -5,8 +5,10 @@
 class Gare : public Achetable
 {
   public :
-    Gare(string nom, int id, Joueur* proprietaire, int prix);         //Constructeur
+  //@fn Gare Constructeur
+    Gare(string nom, int id, Joueur* proprietaire, int prix);         
     
-    int calculLoyer();                                      //Calcul du loyer
+    //@fn calculLoyer Calcul du loyer
+    int calculLoyer();                                      
     bool acheter(Joueur* acheteur);                    
 };

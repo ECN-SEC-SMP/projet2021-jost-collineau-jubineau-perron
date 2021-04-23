@@ -1,0 +1,62 @@
+\hypertarget{class_case}{}\doxysection{Référence de la classe Case}
+\label{class_case}\index{Case@{Case}}
+
+
+{\ttfamily \#include $<$case.\+h$>$}
+
+Graphe d\textquotesingle{}héritage de Case\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_case}
+\end{center}
+\end{figure}
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_case_a87654bb5cdd865e281ce73c7b849a854}\label{class_case_a87654bb5cdd865e281ce73c7b849a854}} 
+{\bfseries Case} (string nom, int id)
+\item 
+\mbox{\Hypertarget{class_case_aa64f66e6b98fe73588f4070988d6f270}\label{class_case_aa64f66e6b98fe73588f4070988d6f270}} 
+string {\bfseries get\+Nom} (void)
+\item 
+\mbox{\Hypertarget{class_case_a46f563fec91fff6cf2efae8699b4393b}\label{class_case_a46f563fec91fff6cf2efae8699b4393b}} 
+virtual bool {\bfseries is\+Achetable} ()=0
+\item 
+\mbox{\Hypertarget{class_case_a72e98ef0ede0b42c621ed11f6c818a7a}\label{class_case_a72e98ef0ede0b42c621ed11f6c818a7a}} 
+int {\bfseries get\+ID} ()
+\item 
+virtual ostream \& \mbox{\hyperlink{class_case_a30efa21dd86dffb67b4cb4cfef54ffd6}{write}} (ostream \&stm) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_case_a89f24d04d3337ac40211b6b015b25fdf}\label{class_case_a89f24d04d3337ac40211b6b015b25fdf}} 
+string {\bfseries nom}
+\item 
+\mbox{\Hypertarget{class_case_a453b6e7ac9f489eb1d895f37a326d8d8}\label{class_case_a453b6e7ac9f489eb1d895f37a326d8d8}} 
+int {\bfseries id}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+La classe \mbox{\hyperlink{class_case}{Case}} permet d\textquotesingle{}abstraire une case quelconque du plateau de jeu. Cette classe n\textquotesingle{}a pas pour but d\textquotesingle{}être utilisée telle quelle, il s\textquotesingle{}agit en fait d\textquotesingle{}une classe mère de laquelle découleront les véritables cases qui constituerons notre plateau.
+
+Les deux grandes classes découlant de \mbox{\hyperlink{class_case}{Case}} sont \mbox{\hyperlink{class_achetable}{Achetable}} et \mbox{\hyperlink{class_non__achetable}{Non\+\_\+achetable}}. Nous notons la méthode purement virtuelle is\+Achetable() qui permettra de différencier ces deux classes dans notre implémentation. 
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{class_case_a30efa21dd86dffb67b4cb4cfef54ffd6}\label{class_case_a30efa21dd86dffb67b4cb4cfef54ffd6}} 
+\index{Case@{Case}!write@{write}}
+\index{write@{write}!Case@{Case}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily Case\+::write (\begin{DoxyParamCaption}\item[{ostream \&}]{stm }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Méthode virtuelle implémentée pour la classe mère et surchargée par les classes filles Surcharge de l\textquotesingle{}opérateur $<$$<$ 
+
+Réimplémentée dans \mbox{\hyperlink{class_constructible_addfd166a9af82b9c2b3cae463f0578cd}{Constructible}}, et \mbox{\hyperlink{class_achetable_a23d6eda9574f0b37367dd4e13b039309}{Achetable}}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+Programmation/\+SMP/\+TPNOTE/case.\+h\item 
+D\+:/\+Documents/\+Programmation/\+SMP/\+TPNOTE/case.\+cpp\end{DoxyCompactItemize}

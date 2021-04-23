@@ -7,9 +7,10 @@
 class Constructible : public Achetable                    
 {
   public :
-    Constructible(string nom, int id, Joueur* proprietaire, int prix);    //Constructeur
+    //@fn Constructible Constructeur
+    Constructible(string nom, int id, Joueur* proprietaire, int prix);    
 
-    //Calcul du loyer. On prend un loyer de base (case non batie) correspondant à 50% du prix de vente
+    //@fn calculLoyer Calcul du loyer. On prend un loyer de base (case non batie) correspondant à 50% du prix de vente
     int calculLoyer();	
 		bool construire(int type);
     bool upgrade(int batToUpgrade);
@@ -18,7 +19,7 @@ class Constructible : public Achetable
     int getBat2();
     int getBat3();
 
-    //Surcharge de l'opérateur <<
+    //@fn write Surcharge de l'opérateur <<
 	  ostream& write( ostream& stm )const override;
   
   protected :
@@ -26,7 +27,7 @@ class Constructible : public Achetable
   // 0 - terrain
   // 1 - maison
   // 2 - hotel
-    int nivBat1;				//Niveau du batiment 1
-    int nivBat2;				//Niveau du batiment 2
-    int nivBat3;				//Niveau du batiment 3
+    int nivBat1;				//@var nivBat1 Niveau du batiment 1
+    int nivBat2;				//@var nivBat2 Niveau du batiment 2
+    int nivBat3;				//@var nivBat3 Niveau du batiment 3
 };

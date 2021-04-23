@@ -43,6 +43,7 @@ ostream& Achetable::write( ostream& stm )const {
 
     stm << ", loyer = " << to_string(this->loyer) << "\n"; 
   }
+  return stm;
 }
 
 /*
@@ -61,7 +62,7 @@ int Achetable::getPrix() {
 }
 
 /*
-*	Calcule puis retourne la valeur du loyer actuelle pour l'Achetable.
+*	\brief Calcule puis retourne la valeur du loyer actuelle pour l'Achetable.
 *	ATTENTION la médhode calculLoyer appelée est virtuelle pure et doit donc être
 *	implémentée dans la classe fille.
 */

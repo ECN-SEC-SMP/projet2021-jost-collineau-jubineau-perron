@@ -177,4 +177,5 @@ ostream& Constructible::write( ostream& stm )const
 
       stm << ", loyer = " << to_string(loyer) << "\n"; 
     }
+    return stm;
 }

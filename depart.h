@@ -6,5 +6,6 @@
 class Depart : public Non_achetable
 { 
   public :
-    Depart(string nom, int id);      //Constructeur
+    //@fn Depart Constructeur
+    Depart(string nom, int id);      
 };

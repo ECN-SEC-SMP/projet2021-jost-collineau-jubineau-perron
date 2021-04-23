@@ -3,7 +3,8 @@
 #include "joueur.h"
 
 
-/*
+/**
+* @class Achetable
 *	La classe Achetable permet d'abstraire une case achetable quelconque du plateau de jeu.
 *	La classe Achetable est fille de la classe Case.
 *	Cette classe n'a pas pour but d'être utilisée telle quelle, il s'agit en fait d'une 
@@ -20,15 +21,18 @@ class Achetable : public Case                             //Case achetable
   private :
     
 	protected :
-		int prix;							//Prix d'achat
-    int loyer;  					//Loyer de la case une foix achetée
-    Joueur* proprietaire; //pointeur vers le proprietaire
+		int prix;							//@var prix Prix d'achat
+    int loyer;  					//@var loyer Loyer de la case une foix achetée
+    Joueur* proprietaire; //@var proprietaire pointeur vers le proprietaire
 
   public :
-    Achetable(string nom, int id, Joueur* proprietaire, int prix);      //Constructeur
+    //@fn Achetable Constructeur
+    Achetable(string nom, int id, Joueur* proprietaire, int prix);      
 
     bool acheter(Joueur* acheteur);
-    virtual int calculLoyer() = 0;                        //Calcul du loyer
+
+    //@fn calculLoyer Calcul du loyer
+    virtual int calculLoyer() = 0;                        
 
 		Joueur* getProprio();
     
@@ -37,8 +41,8 @@ class Achetable : public Case                             //Case achetable
 		int getLoyer();
     void setLoyer(int nouveauLoyer);
 		
-		bool isAchetable() { return true; }
+		bool isAchetable()override { return true; }
 
-    //Surcharge de l'opérateur <<
+    //@fn write Surcharge de l'opérateur <<
 	  ostream& write( ostream& stm )const override; 
 };

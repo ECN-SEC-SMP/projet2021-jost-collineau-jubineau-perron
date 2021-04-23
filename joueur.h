@@ -5,7 +5,8 @@ using namespace std;
 
 class Plateau;	//prédéclaration: permet d'éviter une dépendance cyclique
 
-/*
+/**
+* @class Joueur
 *	La classe Joueur permet d'abstraire un joueur physique à un objet dans 
 *	notre programme. 
 *	Un joueur peut payer un autre joueur, se déplacer sur le plateau de joueur
@@ -20,7 +21,7 @@ class Joueur
 		bool isFaillite;
     int nbGares;
     int nbServices;
-    bool tourFait;	 //Indique si le joueur a fait un tour
+    bool tourFait;	 //@var tourFait Indique si le joueur a fait un tour
 
   public :
     Joueur();

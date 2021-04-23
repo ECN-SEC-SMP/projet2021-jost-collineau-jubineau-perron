@@ -1,0 +1,83 @@
+\hypertarget{class_achetable}{}\doxysection{Référence de la classe Achetable}
+\label{class_achetable}\index{Achetable@{Achetable}}
+
+
+{\ttfamily \#include $<$achetable.\+h$>$}
+
+Graphe d\textquotesingle{}héritage de Achetable\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_achetable}
+\end{center}
+\end{figure}
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_achetable_a91432682ae9e28509f83e90583c23e88}\label{class_achetable_a91432682ae9e28509f83e90583c23e88}} 
+{\bfseries Achetable} (string nom, int id, \mbox{\hyperlink{class_joueur}{Joueur}} $\ast$\mbox{\hyperlink{class_achetable_a054539a615bc16cb0f7beb38ad772ca0}{proprietaire}}, int \mbox{\hyperlink{class_achetable_a28b529beaf8e342ae3247722cc2d6448}{prix}})
+\item 
+\mbox{\Hypertarget{class_achetable_ae3fe3ee1abe7c9ac568d5b3821ebe866}\label{class_achetable_ae3fe3ee1abe7c9ac568d5b3821ebe866}} 
+bool {\bfseries acheter} (\mbox{\hyperlink{class_joueur}{Joueur}} $\ast$acheteur)
+\item 
+\mbox{\Hypertarget{class_achetable_a5b1290d69ca61f8b143ddf4f0a96735d}\label{class_achetable_a5b1290d69ca61f8b143ddf4f0a96735d}} 
+virtual int \mbox{\hyperlink{class_achetable_a5b1290d69ca61f8b143ddf4f0a96735d}{calcul\+Loyer}} ()=0
+\begin{DoxyCompactList}\small\item\em Calcul du loyer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_achetable_a03254a8733c952bbc74b83421699a936}\label{class_achetable_a03254a8733c952bbc74b83421699a936}} 
+\mbox{\hyperlink{class_joueur}{Joueur}} $\ast$ {\bfseries get\+Proprio} ()
+\item 
+\mbox{\Hypertarget{class_achetable_a025fd5ef935c81d67c4ca323b7949c9c}\label{class_achetable_a025fd5ef935c81d67c4ca323b7949c9c}} 
+int {\bfseries get\+Prix} ()
+\item 
+\mbox{\Hypertarget{class_achetable_ac865452d65593224a33372c58a6e6fda}\label{class_achetable_ac865452d65593224a33372c58a6e6fda}} 
+int {\bfseries get\+Loyer} ()
+\item 
+\mbox{\Hypertarget{class_achetable_acff0c71358b93f50c144db8d9e21d054}\label{class_achetable_acff0c71358b93f50c144db8d9e21d054}} 
+void {\bfseries set\+Loyer} (int nouveau\+Loyer)
+\item 
+\mbox{\Hypertarget{class_achetable_ac6b087da3c26a907365d4c319899413c}\label{class_achetable_ac6b087da3c26a907365d4c319899413c}} 
+bool {\bfseries is\+Achetable} () override
+\item 
+ostream \& \mbox{\hyperlink{class_achetable_a23d6eda9574f0b37367dd4e13b039309}{write}} (ostream \&stm) const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_achetable_a28b529beaf8e342ae3247722cc2d6448}\label{class_achetable_a28b529beaf8e342ae3247722cc2d6448}} 
+int \mbox{\hyperlink{class_achetable_a28b529beaf8e342ae3247722cc2d6448}{prix}}
+\begin{DoxyCompactList}\small\item\em Prix d\textquotesingle{}achat. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_achetable_ad2331ea16a084869ee4fd3fc7892b0fa}\label{class_achetable_ad2331ea16a084869ee4fd3fc7892b0fa}} 
+int \mbox{\hyperlink{class_achetable_ad2331ea16a084869ee4fd3fc7892b0fa}{loyer}}
+\begin{DoxyCompactList}\small\item\em Loyer de la case une foix achetée ~\newline
+ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_achetable_a054539a615bc16cb0f7beb38ad772ca0}\label{class_achetable_a054539a615bc16cb0f7beb38ad772ca0}} 
+\mbox{\hyperlink{class_joueur}{Joueur}} $\ast$ \mbox{\hyperlink{class_achetable_a054539a615bc16cb0f7beb38ad772ca0}{proprietaire}}
+\begin{DoxyCompactList}\small\item\em pointeur vers le proprietaire ~\newline
+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+La classe \mbox{\hyperlink{class_achetable}{Achetable}} permet d\textquotesingle{}abstraire une case achetable quelconque du plateau de jeu. La classe \mbox{\hyperlink{class_achetable}{Achetable}} est fille de la classe \mbox{\hyperlink{class_case}{Case}}. Cette classe n\textquotesingle{}a pas pour but d\textquotesingle{}être utilisée telle quelle, il s\textquotesingle{}agit en fait d\textquotesingle{}une classe mère de laquelle découleront les véritables cases qui constituerons notre plateau.
+
+Les classes découlant de \mbox{\hyperlink{class_case}{Case}} sont \mbox{\hyperlink{class_gare}{Gare}}, \mbox{\hyperlink{class_constructible}{Constructible}} et \mbox{\hyperlink{class_service}{Service}}. Nous notons l\textquotesingle{}implémentation de la méthode is\+Achetable() qui permettra de différencier ces les objets achetables des non achetables. Nous notons la méthode purement virtuelle is\+Achetable() qui permettra de différencier ces deux classes dans notre implémentation. 
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{class_achetable_a23d6eda9574f0b37367dd4e13b039309}\label{class_achetable_a23d6eda9574f0b37367dd4e13b039309}} 
+\index{Achetable@{Achetable}!write@{write}}
+\index{write@{write}!Achetable@{Achetable}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily ostream \& Achetable\+::write (\begin{DoxyParamCaption}\item[{ostream \&}]{stm }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Méthode virtuelle implémentée pour la classe mère et surchargée par les classes filles Surcharge de l\textquotesingle{}opérateur $<$$<$ 
+
+Réimplémentée à partir de \mbox{\hyperlink{class_case_a30efa21dd86dffb67b4cb4cfef54ffd6}{Case}}.
+
+
+
+Réimplémentée dans \mbox{\hyperlink{class_constructible_addfd166a9af82b9c2b3cae463f0578cd}{Constructible}}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+Programmation/\+SMP/\+TPNOTE/achetable.\+h\item 
+D\+:/\+Documents/\+Programmation/\+SMP/\+TPNOTE/achetable.\+cpp\end{DoxyCompactItemize}
