@@ -1,5 +1,8 @@
 #include "constructible.h"
 
+/*
+* Constructeur.
+*/
 Constructible::Constructible(string nom, int id, Joueur* proprietaire, int prix) : Achetable(nom, id, proprietaire, prix) {
   this -> nivBat1 = 0;
   this -> nivBat2 = 0;

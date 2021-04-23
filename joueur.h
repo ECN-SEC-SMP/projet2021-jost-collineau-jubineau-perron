@@ -18,9 +18,9 @@ class Joueur
     string nom;
     int fortune;
     int position;
-		bool isFaillite;
     int nbGares;
     int nbServices;
+		bool isFaillite;
     bool tourFait;	 //@var tourFait Indique si le joueur a fait un tour
 
   public :

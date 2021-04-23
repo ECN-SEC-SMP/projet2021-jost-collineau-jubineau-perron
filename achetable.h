@@ -11,10 +11,8 @@
 *	classe mère de laquelle découleront les véritables cases qui constituerons notre plateau.
 *	
 * Les classes découlant de Case sont Gare, Constructible et Service.
-*		Nous notons l'implémentation de la méthode isAchetable() qui permettra de différencier
-*		ces les objets achetables des non achetables.
-*		Nous notons la méthode purement virtuelle isAchetable() qui permettra de différencier
-*		ces deux classes dans notre implémentation.
+*		Nous notons l'implémentation de la méthode isAchetable(), virtuelle dans Case,
+*		qui permettra de différencier ces les objets achetables des non achetables.
 */
 class Achetable : public Case                             //Case achetable
 {

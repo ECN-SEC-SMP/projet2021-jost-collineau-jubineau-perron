@@ -1,7 +1,7 @@
 #include "joueur.h"
 
 /*
-*	Constructeur
+*	Constructeur.
 */
 Joueur::Joueur(){
 	this->nom = "unnamed";
@@ -12,7 +12,7 @@ Joueur::Joueur(){
 }
 
 /*
-*	Constructeur
+*	Constructeur.
 */
 Joueur::Joueur(string name)
 {

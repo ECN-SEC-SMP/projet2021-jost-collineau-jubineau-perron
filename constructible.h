@@ -3,7 +3,15 @@
 #include "joueur.h"
 #include <stdio.h>
 
-//Case constructible
+/**
+* @class Constructible
+*	La classe Constructible permet d'abstraire une case constructible quelconque du plateau de jeu.
+*	La classe Constructible est fille de la classe Achetable.
+*	Cette classe a pour but d'être utilisée directement, et sera utile pour créer notre plateau.
+*	
+* Nous notons la méthode calculLoyer() déclarée dans Achetable et redéfinie ici
+*	avec son implémentation propre aux cases constructibles.
+*/
 class Constructible : public Achetable                    
 {
   public :
