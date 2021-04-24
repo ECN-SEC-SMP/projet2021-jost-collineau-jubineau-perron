@@ -23,6 +23,7 @@ bool Achetable::acheter(Joueur* acheteur) {
       int nouveauSolde = ( acheteur->getFortune() - this->prix );
       acheteur->setFortune(nouveauSolde);		//MAJ fortune acheteur
 			this->proprietaire = acheteur;				//MAJ propriétaire
+      this -> calculLoyer();
       return true;
     }
     else {return false;}
@@ -67,7 +68,7 @@ int Achetable::getPrix() {
 *	implémentée dans la classe fille.
 */
 int Achetable::getLoyer() {
-	calculLoyer();
+	this -> calculLoyer();
   return this->loyer;
 }
 

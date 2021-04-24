@@ -33,10 +33,10 @@ int Service::calculLoyer()
   if(proprietaire != nullptr) {
     int loyer = 0;
     if (this->proprietaire->getNbServices() == 2) {
-      loyer = 2500;			//Bonus si le joueur a tous les services
+      loyer = 250;			//Bonus si le joueur a tous les services
     }
     else {
-      loyer = 1000 * this->proprietaire->getNbServices();
+      loyer = 100 * this->proprietaire->getNbServices();
     }
 
     this->setLoyer(loyer);
