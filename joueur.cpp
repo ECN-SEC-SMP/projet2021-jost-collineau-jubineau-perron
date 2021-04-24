@@ -5,7 +5,7 @@
 */
 Joueur::Joueur(){
 	this->nom = "unnamed";
-	this->fortune = 200;  //on initialise la fortune du joueur à 100000 en début de partie
+	this->fortune = 1000;  //on initialise la fortune du joueur à 1000 en début de partie
   this->position = 0;  //on initialise la position du joueur à 0
 	this->isFaillite = false;
   this->tourFait = false;
@@ -17,7 +17,7 @@ Joueur::Joueur(){
 Joueur::Joueur(string name)
 {
   this->nom = name;   //on set le nom du joueur avec celui donné en paramètre
-  this->fortune = 200;  //on initialise la fortune du joueur à 100000 en début de partie
+  this->fortune = 1000;  //on initialise la fortune du joueur à 1000 en début de partie
   this->position = 0;  //on initialise la position du joueur à 0
 	this->isFaillite = false;
   this->tourFait = false;
@@ -51,7 +51,7 @@ bool Joueur::payer(Joueur* j, int price)
 {
   cout << this->nom << " veut payer " 
 			 << price			<< " a " 
-			 << j->getNom() << "..." ;
+			 << j->getNom() << "\n" ;
   
   // Fortune suffisante :
   if( this->fortune > price){

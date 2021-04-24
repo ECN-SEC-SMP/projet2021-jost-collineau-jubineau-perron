@@ -112,7 +112,7 @@ void Plateau::tourJoueur(Joueur *J){
 
 	// NOUVELLE POSITION = CASE ACHETABLE
 	if ( cases[J->getPosition()]->isAchetable() ) {	
-		cout	<< "La nouvelle case est achetable ..." << endl ;
+		cout	<< "La nouvelle case est achetable " << endl ;
 		Achetable * CaseAchetablePtr = (Achetable *) cases[J->getPosition()];
 		Joueur * proprioCase = CaseAchetablePtr->getProprio();
 		
@@ -151,7 +151,7 @@ void Plateau::tourJoueur(Joueur *J){
     }
 
     else {
-      cout	<< "La nouvelle case N'EST PAS achetable ... A IMPLEMENTER" << endl ;
+      cout	<< "La nouvelle case N'EST PAS achetable" << endl ;
     }
 	}
 	cout << "-- Fin du tour pour " << J->getNom() << "--" << endl ;
