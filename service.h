@@ -19,7 +19,7 @@ class Service : public Achetable
     Service(string nom, int id, Joueur* proprietaire, int prix);      
     
 		int calculLoyer();	 //@fn calculLoyer Calcul du loyer
-    bool acheter(Joueur* acheteur);                         
+    bool acheter(Joueur* acheteur) override;                         
     void afficher(void);            
 };
 

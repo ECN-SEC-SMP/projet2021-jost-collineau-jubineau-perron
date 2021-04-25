@@ -66,7 +66,7 @@ void Plateau::initPlateau(){
 	cases.push_back(new Gare("Gare du Nord", id++, nullptr, 200));	
 	cases.push_back(new Constructible("Faubourg Saint-Honoré", id++, nullptr, 260));
 	cases.push_back(new Constructible("Place de la Bourse", id++, nullptr, 260));
-	cases.push_back(new Non_achetable("Compagnie des Eaux", id++));
+	cases.push_back(new Service("Compagnie des Eaux", id++, nullptr, 260));
 	cases.push_back(new Constructible("Rue de la Fayette", id++, nullptr, 280)); //case 30
 	cases.push_back(new Non_achetable("Police", id++));	
 

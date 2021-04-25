@@ -21,5 +21,5 @@ class Gare : public Achetable
     //@fn calculLoyer Calcul du loyer
     int calculLoyer();  
 		//@fn acheter Permet d'attribuer un propriétaire contre paiement. Retourne true si achat ok.
-    bool acheter(Joueur* acheteur);                    
+    bool acheter(Joueur* acheteur) override;                    
 };

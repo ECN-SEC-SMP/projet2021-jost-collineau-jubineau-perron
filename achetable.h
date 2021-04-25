@@ -27,7 +27,7 @@ class Achetable : public Case                             //Case achetable
     //@fn Achetable Constructeur
     Achetable(string nom, int id, Joueur* proprietaire, int prix);      
 
-    bool acheter(Joueur* acheteur);
+    virtual bool acheter(Joueur* acheteur);
 
     //@fn calculLoyer Calcul du loyer
     virtual int calculLoyer() = 0;                        

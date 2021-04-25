@@ -36,7 +36,7 @@ void Joueur::addFortune(int money)
 */
 void Joueur::addService()
 {
-  nbServices++;
+  this->nbServices += 1;
 }
 
 /*
@@ -91,9 +91,13 @@ void Joueur::deplacer(int deplacement)  //permet de déplacer le joueur en fonct
 void Joueur::afficher_info_joueur()
 {
   cout << "   INFO JOUEUR   " << endl;
-  cout << "Nom = " << this->getNom() << endl;
-  cout << "Fortune = " << this->getFortune() << endl;
-  cout << "Position = " << this->getPosition()+1 << endl;
+  cout << "Nom = " << nom << endl;
+  cout << "Fortune = " << fortune << endl;
+  cout << "Position = " << position+1 << endl;
+  if(nbServices > 0)
+    cout << "NbServices = " << nbServices << endl;
+  if(nbGares > 0)
+    cout << "NbGares = " << nbGares << endl;
   if(isFaillite)cout << "\e[0;31mEn Faillite !\e[0m" << endl;
   cout << "           "<< endl;
 }
